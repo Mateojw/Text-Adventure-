@@ -84,14 +84,18 @@ public class MyTextAdventure : MonoBehaviour {
 
         // if I'm in the entryway, I want the game to say "you are in the entryway."
         // else, check the other statements.
-        if (currentRoom == "title") {
+        if (currentRoom == "title")
+        {
             myText = "radical ski Trip \n\nBy mateo\n\nPress Space to Begin";
 
-           
-            if (Input.GetKeyDown(KeyCode.Space)) {
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
                 currentRoom = "lodge";
             }
-        } else if (currentRoom == "lodge") {
+        }
+        else if (currentRoom == "lodge")
+        {
 
             room_north = "Peak";
 
@@ -108,8 +112,10 @@ public class MyTextAdventure : MonoBehaviour {
             }
 
 
-        } else if (currentRoom == "Peak") {
-            
+        }
+        else if (currentRoom == "Peak")
+        {
+
             room_east = "park";
             room_south = "lodge";
             room_west = "DBD";
@@ -125,7 +131,9 @@ public class MyTextAdventure : MonoBehaviour {
 
 
             myText += " \n you have " + points + " points";
-        } else if (currentRoom == "park") {
+        }
+        else if (currentRoom == "park")
+        {
 
             room_west = "Peak";
 
@@ -171,57 +179,76 @@ public class MyTextAdventure : MonoBehaviour {
         else if (currentRoom == "DBD")
         {
 
-            room_east = "Peak";
-
-            myText = "You see the double black dimond is really steep do you ";
-
-            if (!CRon)
+            if (points <= 30)
             {
-                myText += "Press \"R\" to shread the mougals like Radio Ron. ";
+                myText = "You are not experienced enough to go down a double black diamond \n Press space to go back to the Peak";
 
-                if (Input.GetKeyDown(KeyCode.R))
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
-
-                    currentRoom = "RadioR";
-
+                    currentRoom = "Peak";
                 }
             }
 
 
-            if (!CWill)
+
+
+            if (points > 30)
             {
-                myText += "Press \"W\" to shread the mougals like Will. ";
+                room_east = "Peak";
 
-                if (Input.GetKeyDown(KeyCode.W))
+                myText = "You see the double black dimond is really steep do you ";
+
+                if (!CRon)
                 {
+                    myText += "Press \"R\" to shread the mougals like Radio Ron. ";
 
-                    currentRoom = "Will";
+                    if (Input.GetKeyDown(KeyCode.R))
+                    {
 
+                        currentRoom = "RadioR";
+
+                    }
                 }
+
+
+                if (!CWill)
+                {
+                    myText += "Press \"W\" to shread the mougals like Will. ";
+
+                    if (Input.GetKeyDown(KeyCode.W))
+                    {
+
+                        currentRoom = "Will";
+
+                    }
+                }
+
+
             }
-
-
         }
 
 
 
 
 
-        else if (currentRoom == "halfpipe") {
+        else if (currentRoom == "halfpipe")
+        {
             //changing background color and text color
-			mainCam.backgroundColor = Color.gray;
-			GetComponent<Text>().color = Color.black;
+            mainCam.backgroundColor = Color.gray;
+            GetComponent<Text>().color = Color.black;
 
-            myText = "You did a sick backflip! RAD! \n +10 Points \n Press spacebar to return to the park.";
+            myText = "You did a sick backflip! RAD! \n +10-20 Points \n Press spacebar to return to the park.";
             myText += " \n you got a rad picture to show to some sponsors, go find them and get that free swag";
-            if (!Chalfpipe) {
+            if (!Chalfpipe)
+            {
                 sfxSource.Play();
                 var number = Random.Range(15, 20);
                 points = points + number;
             }
             Chalfpipe = true;
 
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
                 currentRoom = "park";
             }
 
@@ -232,28 +259,30 @@ public class MyTextAdventure : MonoBehaviour {
         else if (currentRoom == "sponsor")
         {
             //changing background color and text color
-			mainCam.backgroundColor = Color.gray;
-			GetComponent<Text>().color = Color.black;
+            mainCam.backgroundColor = Color.gray;
+            GetComponent<Text>().color = Color.black;
 
-            if (points < 60 || !Chalfpipe) {
+            if (points < 60 || !Chalfpipe)
+            {
                 myText = "you ask for a sponsorship but you are not experienced enough come back with more points";
             }
 
-			if (Chalfpipe == true && points < 60) {
-				myText = "You may have as cool picture But thats not enough To get you a sponsorship keep ShReaDing that KNar mAn";  
+            if (Chalfpipe == true && points < 60)
+            {
+                myText = "You may have as cool picture But thats not enough To get you a sponsorship keep ShReaDing that KNar mAn";
 
-			}
+            }
 
-            if (points > 60 && Chalfpipe == true )
+            if (points > 60 && Chalfpipe == true)
             {
                 myText = "You Got the sponsorship WOOOT FREEE SKIIIISSS";
 
                 if (!musicF)
                 {
-                     winSound.Play();
-                 
-                } 
-                   musicF = true;
+                    winSound.Play();
+
+                }
+                musicF = true;
             }
             if (points > 73 && Chalfpipe == true)
             {
@@ -286,10 +315,10 @@ public class MyTextAdventure : MonoBehaviour {
         else if (currentRoom == "jump")
         {
             //changing background color and text color
-			mainCam.backgroundColor = Color.gray;
-			GetComponent<Text>().color = Color.black;
+            mainCam.backgroundColor = Color.gray;
+            GetComponent<Text>().color = Color.black;
 
-            myText = "You did a sick tweaked 1080! RAD! \n +15 Points \n Press spacebar to return to the park.";
+            myText = "You did a sick tweaked 1080! RAD! \n +10-20 Points \n Press spacebar to return to the park.";
             if (!Cjump)
             {
                 sfxSource.Play();
@@ -297,7 +326,7 @@ public class MyTextAdventure : MonoBehaviour {
                 points = points + number;
             }
             Cjump = true;
-           
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 currentRoom = "park";
@@ -308,10 +337,10 @@ public class MyTextAdventure : MonoBehaviour {
         else if (currentRoom == "RadioR")
         {
             //changing background color and text color
-			mainCam.backgroundColor = Color.gray;
-			GetComponent<Text>().color = Color.black;
+            mainCam.backgroundColor = Color.gray;
+            GetComponent<Text>().color = Color.black;
 
-            myText = "You shread the mougals screaming DA when you come in contact with the mougals,\n while this is loud and abnoxious ( attracting attention ) you go down the hill in record speed\n +10 for speed +5 for unique sounds" ;
+            myText = "You shread the mougals screaming DA when you come in contact with the mougals,\n while this is loud and abnoxious ( attracting attention ) you go down the hill in record speed\n +10 for speed +0-10 for unique sounds";
             if (!CRon)
             {
                 sfxSource.Play(); // sound of Radio Ron doing DA.
@@ -319,7 +348,7 @@ public class MyTextAdventure : MonoBehaviour {
                 points = points + number;
             }
             CRon = true;
-          
+
 
             myText += "\n Press Space to go back to the Peak";
             if (Input.GetKeyDown(KeyCode.Space))
@@ -332,17 +361,17 @@ public class MyTextAdventure : MonoBehaviour {
         else if (currentRoom == "Will")
         {
             //changing background color and text color
-			mainCam.backgroundColor = Color.gray;
-			GetComponent<Text>().color = Color.black;
+            mainCam.backgroundColor = Color.gray;
+            GetComponent<Text>().color = Color.black;
 
-            myText = "You shread the mougals doing backflips and crazy nose butters... but whats that in the distance \n radio ron speeds by you screaming DA at every impact this distracts you causing you to fly into a tree and become paralized ";
+            myText = "You shread the mougals doing backflips and crazy nose butters... but whats that in the distance \n Radio Ron speeds by you screaming DA at every impact this distracts you causing you to fly into a tree and become paralized ";
             if (!CWill)
             {
                 sfxSource.Play(); // sound of Radio Ron doing DA. 
             }
             myText += "\n Press Space to go back to the hospital";
             CWill = true;
-           
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 currentRoom = "Lose";
@@ -353,10 +382,10 @@ public class MyTextAdventure : MonoBehaviour {
         else if (currentRoom == "rail")
         {
             //changing background color and text color
-			mainCam.backgroundColor = Color.gray;
-			GetComponent<Text>().color = Color.black;
+            mainCam.backgroundColor = Color.gray;
+            GetComponent<Text>().color = Color.black;
 
-            myText = "You did a kfed into a 450 out! Boomtastic! \n +15 Points \n Press spacebar to return to the park.";
+            myText = "You did a kfed into a 450 out! Boomtastic! \n +10-15 Points \n Press spacebar to return to the park.";
             if (!Crail)
             {
                 sfxSource.Play();
@@ -366,7 +395,7 @@ public class MyTextAdventure : MonoBehaviour {
             Crail = true;
 
 
-           
+
 
 
             if (Input.GetKeyDown(KeyCode.Space))
@@ -382,7 +411,7 @@ public class MyTextAdventure : MonoBehaviour {
         else if (currentRoom == "Lose")
         {
             //changing background color and text color
-			mainCam.backgroundColor = Color.gray;
+            mainCam.backgroundColor = Color.gray;
             GetComponent<Text>().color = Color.black;
 
             myText = "you are injured and in the hospital :( for this year you cannot ski anymore \n press space to maracasly heal and start skiing again";
@@ -401,7 +430,7 @@ public class MyTextAdventure : MonoBehaviour {
             mainCam.backgroundColor = Color.gray;
             GetComponent<Text>().color = Color.black;
 
-            myText = "So tasty YUMMMMMM /n Press space to go back to the lodge";
+            myText = "So tasty YUMMMMMM \n Press space to go back to the lodge";
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 currentRoom = "lodge";
@@ -413,32 +442,39 @@ public class MyTextAdventure : MonoBehaviour {
 
 
 
-        else if (currentRoom == "finish line") {
+        else if (currentRoom == "finish line")
+        {
 
-			//sfxSource.clip = winSound;
-			//if (!sfxSource.isPlaying) {
-				//sfxSource.Play();
-			//}
+            //sfxSource.clip = winSound;
+            //if (!sfxSource.isPlaying) {
+            //sfxSource.Play();
+            //}
 
-			if (Chalfpipe = true) {
-				myText = "HEYOOOOO YOU GOT TO THE WIN ROOOM!!!! BOIIOIOIOIOING, NICE! Let'S ENJOY CAKE.";
+            if (Chalfpipe = true)
+            {
+                myText = "HEYOOOOO YOU GOT TO THE WIN ROOOM!!!! BOIIOIOIOIOING, NICE! Let'S ENJOY CAKE.";
 
-			} else {
+            }
+            else
+            {
 
-				myText = "Sorry, you unlucky person, you need a key.\n\n Press space to return to the Peak";
+                myText = "Sorry, you unlucky person, you need a key.\n\n Press space to return to the Peak";
 
-				if (Input.GetKeyDown(KeyCode.Space)) {
-					currentRoom = "Peak";
-				}
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    currentRoom = "Peak";
+                }
 
-			}
+            }
 
 
-		} else {
+        }
+        else
+        {
 
-			myText = "You have fallen into a void because the game designer is a garbage game designer and the developer is bad too and some variable is set wrong, specifically currentRoom.";
+            myText = "You have fallen into a void because the game designer is a garbage game designer and the developer is bad too and some variable is set wrong, specifically currentRoom.";
 
-		}
+        }
 
 
 		// here we're checking for keyboard input
